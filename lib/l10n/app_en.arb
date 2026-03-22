@@ -1,0 +1,27 @@
+﻿{
+  "appTitle": "WeatherApp",
+  "weather": "Weather",
+  "temperature": "Temperature",
+  "humidity": "Humidity",
+  "windSpeed": "Wind Speed",
+  "searchCity": "Search City",
+  "city": "City",
+  "condition": "Condition",
+  "lastUpdated": "Last Updated",
+  "loading": "Loading...",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "errorNoInternet": "No internet connection.",
+  "retry": "Retry",
+  "settings": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "afaanOromoo": "Afaan Oromoo",
+  "english": "English",
+  "searchHint": "Enter a city name",
+  "feelsLike": "Feels Like",
+  "kmh": "km/h",
+  "percent": "%"
+}
+

@@ -1,0 +1,11 @@
+﻿{
+  "cities": [
+    {"name": "Addis Ababa", "country": "Ethiopia", "lat": 8.9806, "lon": 38.7578},
+    {"name": "Nairobi", "country": "Kenya", "lat": -1.2921, "lon": 36.8219},
+    {"name": "Cairo", "country": "Egypt", "lat": 30.0444, "lon": 31.2357},
+    {"name": "Lagos", "country": "Nigeria", "lat": 6.5244, "lon": 3.3792},
+    {"name": "London", "country": "United Kingdom", "lat": 51.5072, "lon": -0.1276},
+    {"name": "New York", "country": "United States", "lat": 40.7128, "lon": -74.0060}
+  ]
+}
+
