@@ -9,6 +9,8 @@ import 'package:weatherapp/l10n/fallback_localizations.dart';
 
 import 'core/constants/app_constants.dart';
 import 'core/network/api_client.dart';
+import 'core/services/rain_background_service.dart';
+import 'core/services/rain_notification_service.dart';
 import 'core/theme/app_theme.dart';
 import 'data/datasources/city_local_data_source.dart';
 import 'data/datasources/city_remote_data_source.dart';
@@ -45,6 +47,11 @@ Future<void> main() async {
   final cacheBox = await Hive.openBox(AppConstants.boxCache);
 
   final prefs = await SharedPreferences.getInstance();
+  final rainNotificationService = RainNotificationService(prefs);
+  await rainNotificationService.initialize();
+  final rainMonitoringEnabled =
+      prefs.getBool(AppConstants.prefsRainMonitorEnabled) ?? true;
+  await initializeRainBackgroundService(enabled: rainMonitoringEnabled);
 
   final apiClient = ApiClient();
   final weatherRemote = WeatherRemoteDataSource(apiClient);
@@ -62,6 +69,7 @@ Future<void> main() async {
       weatherRepository: weatherRepository,
       cityRepository: cityRepository,
       onboardingRepository: onboardingRepository,
+      rainNotificationService: rainNotificationService,
     ),
   );
 }
@@ -73,12 +81,14 @@ class WeatherApp extends StatelessWidget {
     required this.weatherRepository,
     required this.cityRepository,
     required this.onboardingRepository,
+    required this.rainNotificationService,
   });
 
   final SharedPreferences prefs;
   final WeatherRepositoryImpl weatherRepository;
   final CityRepositoryImpl cityRepository;
   final OnboardingRepositoryImpl onboardingRepository;
+  final RainNotificationService rainNotificationService;
 
   @override
   Widget build(BuildContext context) {
@@ -93,8 +103,12 @@ class WeatherApp extends StatelessWidget {
         RepositoryProvider(create: (_) => GetSavedCity(cityRepository)),
         RepositoryProvider(create: (_) => SaveCity(cityRepository)),
         RepositoryProvider(create: (_) => SearchCities(cityRepository)),
-        RepositoryProvider(create: (_) => CheckOnboarding(onboardingRepository)),
-        RepositoryProvider(create: (_) => CompleteOnboarding(onboardingRepository)),
+        RepositoryProvider(
+          create: (_) => CheckOnboarding(onboardingRepository),
+        ),
+        RepositoryProvider(
+          create: (_) => CompleteOnboarding(onboardingRepository),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -117,6 +131,7 @@ class WeatherApp extends StatelessWidget {
               getCurrentWeather: context.read<GetCurrentWeather>(),
               getForecast: context.read<GetForecast>(),
               getHistory: context.read<GetHistory>(),
+              rainNotificationService: rainNotificationService,
             ),
           ),
         ],

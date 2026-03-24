@@ -10,6 +10,7 @@ class AppConstants {
 
   static const String prefsLocaleCode = 'prefs_locale_code';
   static const String prefsThemeMode = 'prefs_theme_mode';
+  static const String prefsRainMonitorEnabled = 'prefs_rain_monitor_enabled';
 
   static const String boxSettings = 'settings_box';
   static const String boxCache = 'cache_box';
