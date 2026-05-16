@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weatherapp/l10n/app_localizations.dart';
 
 import '../bloc/city/city_bloc.dart';
 import '../bloc/onboarding/onboarding_bloc.dart';
@@ -13,14 +14,15 @@ class RootScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<OnboardingBloc, OnboardingState>(
       builder: (context, onboardingState) {
         if (onboardingState.status == OnboardingStatus.loading) {
-          return const LoadingStateView(message: 'Muuxannoo kee qopheessaa jira...');
+          return LoadingStateView(message: l10n.preparingExperience);
         }
         if (onboardingState.status == OnboardingStatus.failure) {
           return ErrorStateView(
-            message: onboardingState.message ?? 'Rakkoon uumame',
+            message: l10n.errorGeneric,
             onRetry: () => context.read<OnboardingBloc>().add(const LoadOnboarding()),
           );
         }
@@ -31,7 +33,7 @@ class RootScreen extends StatelessWidget {
                 cityState.status == CityStatus.loading &&
                 cityState.selectedCity == null;
             if (isInitialCityLoad) {
-              return const LoadingStateView(message: 'Magaalaa kee fe\'aa jira...');
+              return LoadingStateView(message: l10n.loadingYourCity);
             }
 
             final needsOnboarding =

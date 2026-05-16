@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/l10n/app_localizations.dart';
 
 import '../../../core/utils/responsive.dart';
 
@@ -15,6 +16,7 @@ class ErrorStateView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final r = context.responsive;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: Center(
@@ -41,7 +43,7 @@ class ErrorStateView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(r.r(16)),
                     ),
                   ),
-                  child: const Text('Retry'),
+                  child: Text(l10n.retry),
                 ),
               ),
             ],

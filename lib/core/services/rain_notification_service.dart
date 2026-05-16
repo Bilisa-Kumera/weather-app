@@ -159,11 +159,7 @@ class RainNotificationService {
 
   bool _isRain(String text) {
     final normalized = text.toLowerCase();
-    return normalized.contains('rain') ||
-        normalized.contains('drizzle') ||
-        normalized.contains('shower') ||
-        normalized.contains('thunder') ||
-        normalized.contains('sleet');
+    return normalized.contains('rain') || normalized.contains('drizzle');
   }
 
   void _printStatus(String source, String cityName, String message) {
@@ -172,3 +168,4 @@ class RainNotificationService {
     }
   }
 }
+

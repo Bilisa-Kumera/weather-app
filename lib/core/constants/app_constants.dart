@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppConstants {
   static const String weatherApiBaseUrl = 'https://api.weatherapi.com/v1';
   static const String defaultCity = 'Addis Ababa';
-  static const Locale defaultLocale = Locale('om');
+  static const Locale defaultLocale = Locale('en');
 
   static const Duration currentWeatherTtl = Duration(minutes: 30);
   static const Duration forecastTtl = Duration(hours: 2);

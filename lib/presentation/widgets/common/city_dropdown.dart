@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weatherapp/l10n/app_localizations.dart';
 
 import '../../../core/utils/responsive.dart';
 import '../../../domain/entities/city.dart';
@@ -47,6 +49,7 @@ class _CityDropdownState extends State<CityDropdown> {
   @override
   Widget build(BuildContext context) {
     final r = context.responsive;
+    final l10n = AppLocalizations.of(context)!;
     final searchCities = context.read<SearchCities>();
 
     return DropdownSearch<City>(
@@ -64,7 +67,7 @@ class _CityDropdownState extends State<CityDropdown> {
           style: TextStyle(fontSize: r.sp(14), color: const Color(0xFF0F172A)),
           cursorColor: const Color(0xFF1D4ED8),
           decoration: InputDecoration(
-            hintText: 'Magaalaa kee barbaadi',
+            hintText: l10n.searchHint,
             hintStyle: TextStyle(color: const Color(0xFF64748B), fontSize: r.sp(13)),
             filled: true,
             fillColor: const Color(0xFFF8FAFC),
@@ -113,7 +116,7 @@ class _CityDropdownState extends State<CityDropdown> {
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white.withOpacity(0.18),
-          hintText: 'Magaalaa kee barbaadi',
+          hintText: l10n.searchHint,
           hintStyle: TextStyle(color: Colors.white70, fontSize: r.sp(14)),
           prefixIcon: const Icon(Icons.search, color: Colors.white70),
           border: OutlineInputBorder(
@@ -131,7 +134,7 @@ class _CityDropdownState extends State<CityDropdown> {
       dropdownBuilder: (context, selectedItem) {
         return Text(
           selectedItem == null
-              ? 'Magaalaa kee barbaadi'
+              ? l10n.searchHint
               : '${selectedItem.name}, ${selectedItem.country}',
           style: TextStyle(
             color: Colors.white,

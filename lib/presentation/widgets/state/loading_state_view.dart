@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:weatherapp/l10n/app_localizations.dart';
 
 import '../../../core/utils/responsive.dart';
 
@@ -11,6 +12,7 @@ class LoadingStateView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final r = context.responsive;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: Container(
@@ -64,7 +66,7 @@ class LoadingStateView extends StatelessWidget {
                   SizedBox(height: r.h(18)),
                   Center(
                     child: Text(
-                      message ?? 'Odeeffannoo haala qilleensaa fe\'aa jira...',
+                      message ?? l10n.loading,
                       style: TextStyle(
                         fontSize: r.sp(13),
                         color: Colors.white.withOpacity(0.85),

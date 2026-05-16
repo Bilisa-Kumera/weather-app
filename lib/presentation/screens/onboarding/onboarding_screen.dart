@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/city/city_bloc.dart';
 import '../../bloc/onboarding/onboarding_bloc.dart';
 import '../../widgets/onboarding/welcome_page.dart';
 import '../../widgets/onboarding/city_select_page.dart';

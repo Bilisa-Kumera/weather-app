@@ -128,7 +128,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           SizedBox(height: r.h(24)),
           Text(
-            'Rain Alerts',
+            l10n.rainAlerts,
             style: TextStyle(fontSize: r.sp(16), fontWeight: FontWeight.w600),
           ),
           SizedBox(height: r.h(12)),
@@ -137,10 +137,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               borderRadius: BorderRadius.circular(r.r(16)),
             ),
             child: SwitchListTile(
-              title: const Text('Background rain monitor'),
-              subtitle: const Text(
-                'Checks every 5 minutes and alerts if rain is expected in 20 minutes.',
-              ),
+              title: Text(l10n.backgroundRainMonitor),
+              subtitle: Text(l10n.backgroundRainMonitorSubtitle),
               value: _rainMonitorEnabled,
               onChanged: _isSavingRainMonitor
                   ? null
